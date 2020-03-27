@@ -1,0 +1,71 @@
+Reference link for project: https://www.callicoder.com/spring-boot-rest-api-tutorial-with-mysql-jpa-hibernate/
+(extra)(exception handling) https://www.tutorialspoint.com/spring_boot/spring_boot_exception_handling.htm
+The port for this project has been set to 8010 (properties) since 8080 is default for jenkins.
+
+Dependencies:
+Spring Boot Starter Actuator dependency is used to monitor and manage your application.
+Spring Boot Starter Security dependency is used for Spring Security.
+Spring Boot Starter web dependency is used to write a Rest Endpoints.
+Spring Boot Starter Thyme Leaf dependency is used to create a web application.
+Spring Boot Starter Test dependency is used for writing Test cases.
+
+@EnableAutoConfiguration or @SpringBootApplication annotation enables your Spring Boot application to be automatically configured.
+If you added @SpringBootApplication annotation to the class, you do not need to add the @EnableAutoConfiguration, @ComponentScan and @SpringBootConfiguration annotation.
+
+resources/application.properties - It contains application-wide properties. You can define server’s default port, server’s context path, database URLs etc, in this file.
+Spring Boot tries to auto-configure a DataSource if spring-data-jpa is in the classpath by reading the database configuration from application.properties file.
+Spring Boot uses Hibernate as the default JPA implementation.
+
+Annotations
+@Temporal: Annotation is used with java.util.Date and java.util.Calendar classes. It converts the date and time values from Java Object to compatible database type and vice versa.
+@JsonIgnoreProperties: Annotation is a Jackson annotation. Spring Boot uses Jackson for Serializing and Deserializing Java objects to and from JSON. This annotation is used because we don’t want the clients of the rest api to supply the createdAt and updatedAt values.
+@Repository: Note that in NoteRepository interface, we have annotated the interface with @Repository annotation. This tells Spring to bootstrap the repository during component scan.
+@ResponseStatus(value = HttpStatus.NOT_FOUND): Causes Spring boot to respond with the specified HTTP status code whenever this exception is thrown from your controller.
+@RestController: It is a combination of Spring’s @Controller and @ResponseBody annotations. It is written at the beginning of the controller class.
+@Control: Used to define a controller.
+@ResponseBody: Used to indicate that the return value of a method should be used as the response body of the request.
+@RequestMapping("/api"): Declares that the url for all the apis in this controller will start with /api
+@PostMapping("/notes"):Short form for @RequestMapping(value = "/notes", method = RequestMethod.POST). Ant=y one can be written.
+@GetMapping("/notes"): Annotation is a short form of @RequestMapping(value="/notes", method=RequestMethod.GET)
+@RequestBody: Annotation is used to bind the request body with a method parameter.
+@Valid: Annotation makes sure that the request body is valid. If the request body doesn’t have a title or a content, then spring will return a 400 BadRequest error to the client.
+@PathVariable: As the name suggests, it is used to bind a path variable with a method parameter.
+    eg- @PutMapping("/notes/{id}") <enter> Public Note updateNote(@PathVariable(value = "id") Long noteId): Here parameter for this function is noteId which is initialised with the value = 2 if put request is done as /notes/2
+    It can also be written as @PathVariable("id"). Both are similar.
+@RequestParam: The @RequestParam annotation is used to read the request parameters from the Request URL. By default, it is a required parameter. We can also set default value for request parameters.
+    eg-@RequestParam(value = "name", required = false, defaultValue = "honey") String name)
+
+By creating NoteRepository interface that extends JpaRepository we will be able to use JpaRepository’s inbuilt methods like save(), findOne(), findAll(), count(), delete() etc.
+
+Interface JpaRepository<T,ID>:
+All Superinterfaces: CrudRepository<T,ID>, PagingAndSortingRepository<T,ID>, QueryByExampleExecutor<T>, Repository<T,ID>
+Functions:
+    void deleteAllInBatch(): Deletes all entities in a batch call.
+    void deleteInBatch(Iterable<T> entities): Deletes the given entities in a batch which means it will create a single Query.
+    List<T>	findAll()
+    <S extends T> List<S> findAll(Example<S> example)
+    <S extends T> List<S findAll(Example<S> example, Sort sort)
+    List<T>	findAll(Sort sort)
+    List<T>	findAllById(Iterable<ID> ids)
+    void flush(): Flushes all pending changes to the database.
+    T getOne(ID id):Returns a reference to the entity with the given identifier.
+    <S extends T> List<S> saveAll(Iterable<S> entities)
+    <S extends T> S	saveAndFlush(S entity):Saves an entity and flushes changes instantly.
+
+Examples of supported functions and their equivalent queries:
+    findByEmailAddressAndLastname(String emailAddress, String lastname)     select u from User u where u.emailAddress = ?1 and u.lastname = ?2
+    findByLastnameOrFirstname(String lastname, String firstname)            where x.lastname = ?1 or x.firstname = ?2
+    findByStartDateBetween(Integer startDate                                where x.startDate between ?1 and ?2
+    findByAgeGreaterThan(Integer Age)
+    findByAgeGreaterThanEqual(Integer Age)
+    findByFirstnameIgnoreCase(String firstName)                             where UPPER(x.firstame) = UPPER(?1)
+for complete list refer :https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.repositories
+
+mvn -U idea:idea- Command to manually download dependencies.
+
+
+Tables-
+Employee, Cabin, project, Department
+emp: cabin- 1:1
+emp: proj- 1:m
+create. cabin emp proj
