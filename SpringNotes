@@ -68,4 +68,5 @@ Tables-
 Employee, Cabin, project, Department
 emp: cabin- 1:1
 emp: proj- 1:m
-create. cabin emp proj
+emp: dept- m:1
+create. cabin dept emp proj

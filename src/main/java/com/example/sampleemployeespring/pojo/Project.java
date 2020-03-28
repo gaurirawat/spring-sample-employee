@@ -1,12 +1,11 @@
 package com.example.sampleemployeespring.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "project")
+@Table
 public class Project {
     @Id
     @Column
@@ -14,10 +13,10 @@ public class Project {
     private Integer project_id;
 
     @Column
-    String projectName;
+    private String projectName;
 
     @Column
-    String guide;
+    private String guide;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_id")
@@ -29,10 +28,6 @@ public class Project {
 
     public int getProject_id() {
         return project_id;
-    }
-
-    public void setProject_id(int project_id) {
-        this.project_id = project_id;
     }
 
     public String getProjectName() {
@@ -58,4 +53,18 @@ public class Project {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
+
+    public void setProject_id(Integer project_id) {
+        this.project_id = project_id;
+    }
+    @Override
+    public String toString() {
+        return "Project{" +
+                "project_id=" + project_id +
+                ", projectName='" + projectName + '\'' +
+                ", guide='" + guide + '\'' +
+                ", employee=" + employee +
+                '}';
+    }
+
 }

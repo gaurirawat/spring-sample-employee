@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "emp")
+@Table
 public class Employee {
     @Id
     @Column
@@ -14,20 +14,34 @@ public class Employee {
     private Integer id;
 
     @Column
-    private String firstName;
-
-    @Column
-    private String LastName;
+    private String name;
 
     @OneToOne(targetEntity = Cabin.class, cascade = CascadeType.ALL)
     @JoinColumn(name= "cabin_id")
+    @JsonIgnoreProperties(value = {"employee", "hibernateLazyInitializer"}, allowSetters = true)
     private Cabin cabin;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "employee")
     @JsonIgnoreProperties(value = {"employee", "hibernateLazyInitializer"}, allowSetters = true)
     private List<Project> projects;
 
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name="dept_id")
+    @JsonIgnoreProperties(value = {"employee", "hibernateLazyInitializer"}, allowSetters = true)
+    private Department department;
+
     public Employee() {
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", firstName='" + name + '\'' +
+                ", cabin=" + cabin +
+                ", projects=" + projects +
+                ", department=" + department +
+                '}';
     }
 
     public int getId() {
@@ -38,20 +52,12 @@ public class Employee {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return LastName;
-    }
-
-    public void setLastName(String lastName) {
-        LastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Cabin getCabin() {
@@ -64,6 +70,18 @@ public class Employee {
 
     public List<Project> getProjects() {
         return projects;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public void setProjects(List<Project> projects) {

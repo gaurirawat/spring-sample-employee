@@ -32,12 +32,6 @@ public class CabinController {
         return cabinRepository.findByFloorNo(no);
     }
 
-//    @PostMapping("/create/{empId}")
-//    public Cabin createCabin(@PathVariable("empId") Integer id, @Valid @RequestBody Cabin cabin){
-//        cabin.setEmployee(employeeRepository.getOne(id));
-//        return cabinRepository.save(cabin);
-//    }
-
     @PostMapping("/create")
     public Cabin createCabin( @Valid @RequestBody Cabin cabin){
         return cabinRepository.save(cabin);

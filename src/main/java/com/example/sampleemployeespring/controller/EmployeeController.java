@@ -9,7 +9,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("employee/")
+@RequestMapping("emp/")
 public class EmployeeController {
 
     @Autowired

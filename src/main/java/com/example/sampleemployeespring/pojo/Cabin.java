@@ -1,12 +1,10 @@
 package com.example.sampleemployeespring.pojo;
-
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "cabin")
+@Table
 public class Cabin {
     @Id
     @Column
@@ -14,13 +12,13 @@ public class Cabin {
     private Integer id;
 
     @Column
-    String roomNo;
+    private String roomNo;
 
     @Column
-    int floorNo;
+    private int floorNo;
 
-    @OneToOne(mappedBy = "cabin")
-    @JsonIgnore
+    @OneToOne(mappedBy = "cabin", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties(value = {"cabin", "hibernateLazyInitializer"}, allowSetters = true)
     private Employee employee;
 
     public Cabin() {
