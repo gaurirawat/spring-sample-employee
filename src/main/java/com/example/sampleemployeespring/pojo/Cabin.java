@@ -17,7 +17,8 @@ public class Cabin {
     @Column
     private int floorNo;
 
-    @OneToOne(mappedBy = "cabin", cascade = CascadeType.ALL)
+    @OneToOne(cascade ={CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "emp_id")
     @JsonIgnoreProperties(value = {"cabin", "hibernateLazyInitializer"}, allowSetters = true)
     private Employee employee;
 

@@ -40,16 +40,18 @@ public class CabinController {
 
     @PutMapping("/delete/{id}")
     public void deleteCabin(@PathVariable("id") Integer id){
+        Employee e=cabinRepository.getOne(id).getEmployee();
+        e.setCabin(null);
         cabinRepository.deleteById(id);
     }
 
     @PutMapping("/update/{id}")
     public Cabin updateCabin(@PathVariable("id") Integer id, @Valid @RequestBody Cabin cabin){
-        Cabin cabin1 =cabinRepository.getOne(id);
-        cabin1.setEmployee(cabin.getEmployee());
-        cabin1.setFloorNo(cabin.getFloorNo());
-        cabin1.setRoomNo(cabin.getRoomNo());
-        return cabinRepository.save(cabin1);
+//        Cabin cabin1 =cabinRepository.getOne(id);
+//        cabin1.setEmployee(cabin.getEmployee());
+//        cabin1.setFloorNo(cabin.getFloorNo());
+//        cabin1.setRoomNo(cabin.getRoomNo());
+        return cabinRepository.save(cabin);
     }
 
 }

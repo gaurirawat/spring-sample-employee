@@ -25,7 +25,7 @@ public class DepartmentController {
         return departmentRepository.getOne(id);
     }
 
-    @PostMapping("/create")
+    @PostMapping("/create/{id}")
     public Department createDept(@Valid @RequestBody Department department) {
         return departmentRepository.save(department);
     }
@@ -34,5 +34,15 @@ public class DepartmentController {
     public void deleteDept(@PathVariable(value = "id") Integer id) {
         departmentRepository.deleteById(id);
     }
+
+    @PutMapping("/update/{id}")
+    public Department updateCabin(@PathVariable("id") Integer id, @Valid @RequestBody Department cabin){
+//        Cabin cabin1 =cabinRepository.getOne(id);
+//        cabin1.setEmployee(cabin.getEmployee());
+//        cabin1.setFloorNo(cabin.getFloorNo());
+//        cabin1.setRoomNo(cabin.getRoomNo());
+        return departmentRepository.save(cabin);
+    }
+
 }
 

@@ -27,7 +27,7 @@ class ABC{
         List<ABC> l= new LinkedList<>();
         l.add(a1);
         l.add(a2);
-
+        XYZ a= new XYZ();
         XYZ<ABC> xyz= new XYZ<ABC>();
         xyz.testFunc("hello", l);
     }

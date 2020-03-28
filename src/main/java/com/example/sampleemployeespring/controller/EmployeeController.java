@@ -18,6 +18,9 @@ public class EmployeeController {
     @Autowired
     CabinRepository cabinRepository;
 
+    @Autowired
+    DepartmentRepository departmentRepository;
+
     @GetMapping("/getAll")
     public List<Employee> getEmp(){
         return employeeRepository.findAll();
@@ -28,9 +31,10 @@ public class EmployeeController {
         return employeeRepository.getOne(id);
     }
 
-    @PostMapping("/create/{cabinId}")
-    public Employee createEmp(@PathVariable("cabinId") Integer id, @Valid @RequestBody Employee employee){
-        employee.setCabin(cabinRepository.getOne(id));
+    @PostMapping("/create/{cabinId}/{deptId}")
+    public Employee createEmp(@PathVariable("cabinId") Integer idC,@PathVariable("deptId") Integer idD, @Valid @RequestBody Employee employee){
+        employee.setCabin(cabinRepository.getOne(idC));
+        employee.setDepartment(departmentRepository.getOne(idD));
         return employeeRepository.save(employee);
     }
 
@@ -38,4 +42,6 @@ public class EmployeeController {
     public void deleteEmp(@PathVariable("id") Integer id){
         employeeRepository.deleteById(id);
     }
+
+
 }

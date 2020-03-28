@@ -1,6 +1,9 @@
 package com.example.sampleemployeespring.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.istack.NotNull;
+import com.sun.istack.Nullable;
 
 import javax.persistence.*;
 import java.util.List;
@@ -16,8 +19,7 @@ public class Employee {
     @Column
     private String name;
 
-    @OneToOne(targetEntity = Cabin.class, cascade = CascadeType.ALL)
-    @JoinColumn(name= "cabin_id")
+    @OneToOne(mappedBy ="employee", cascade = CascadeType.ALL)
     @JsonIgnoreProperties(value = {"employee", "hibernateLazyInitializer"}, allowSetters = true)
     private Cabin cabin;
 
@@ -27,7 +29,8 @@ public class Employee {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name="dept_id")
-    @JsonIgnoreProperties(value = {"employee", "hibernateLazyInitializer"}, allowSetters = true)
+    @JsonIgnoreProperties(value = {"employees", "hibernateLazyInitializer"}, allowSetters = true)
+   // @Nullable
     private Department department;
 
     public Employee() {

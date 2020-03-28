@@ -19,6 +19,15 @@ public class ProjectController {
     @Autowired
     ProjectRepository projectRepository;
 
+
+    @PutMapping("/test/{id}")
+    public Project test(@PathVariable ("id")Integer id) {
+        Project d1= projectRepository.getOne(id);
+        d1.setGuide("biotechhhhh");
+        d1.setProjectName("sacfsa");
+        return projectRepository.save(d1);
+    }
+
     @GetMapping("/getAll")
     public List<Project> getProject(){
         return projectRepository.findAll();

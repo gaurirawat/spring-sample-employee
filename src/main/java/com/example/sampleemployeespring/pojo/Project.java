@@ -20,7 +20,7 @@ public class Project {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_id")
-    @JsonIgnoreProperties(value = {"project","hibernateLazyInitializer"},allowSetters = true)
+    @JsonIgnoreProperties(value = {"projects","hibernateLazyInitializer"},allowSetters = true)
     private Employee employee;
 
     public Project() {
