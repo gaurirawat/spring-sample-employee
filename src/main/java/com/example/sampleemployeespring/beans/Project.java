@@ -1,4 +1,4 @@
-package com.example.sampleemployeespring.pojo;
+package com.example.sampleemployeespring.beans;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -15,13 +15,17 @@ public class Project {
     @Column
     private String projectName;
 
-    @Column
-    private String guide;
+//    @Column
+//    private String guide;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_id")
     @JsonIgnoreProperties(value = {"projects","hibernateLazyInitializer"},allowSetters = true)
     private Employee employee;
+
+    public Project(String projectName) {
+        this.projectName = projectName;
+    }
 
     public Project() {
     }
@@ -38,13 +42,13 @@ public class Project {
         this.projectName = projectName;
     }
 
-    public String getGuide() {
-        return guide;
-    }
-
-    public void setGuide(String guide) {
-        this.guide = guide;
-    }
+//    public String getGuide() {
+//        return guide;
+//    }
+//
+//    public void setGuide(String guide) {
+//        this.guide = guide;
+//    }
 
     public Employee getEmployee() {
         return employee;
@@ -62,7 +66,7 @@ public class Project {
         return "Project{" +
                 "project_id=" + project_id +
                 ", projectName='" + projectName + '\'' +
-                ", guide='" + guide + '\'' +
+//                ", guide='" + guide + '\'' +
                 ", employee=" + employee +
                 '}';
     }

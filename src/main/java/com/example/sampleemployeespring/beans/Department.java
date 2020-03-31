@@ -1,5 +1,4 @@
-package com.example.sampleemployeespring.pojo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+package com.example.sampleemployeespring.beans;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -45,6 +44,10 @@ public class Department {
     }
 
     public Department() {
+    }
+
+    public Department(String name) {
+        this.name = name;
     }
 
     @Override

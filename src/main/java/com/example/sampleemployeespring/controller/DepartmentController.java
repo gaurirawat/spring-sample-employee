@@ -1,6 +1,6 @@
 package com.example.sampleemployeespring.controller;
 
-import com.example.sampleemployeespring.pojo.Department;
+import com.example.sampleemployeespring.beans.Department;
 import com.example.sampleemployeespring.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +9,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("dept")
+@RequestMapping("dept/")
 public class DepartmentController {
 
     @Autowired

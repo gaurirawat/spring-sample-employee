@@ -1,0 +1,16 @@
+reference:
+jsonObject- https://www.tutorialspoint.com/json/json_java_example.htm
+jsonObject- https://www.baeldung.com/java-org-json
+jackson-
+
+Add dependency
+<dependency>
+    <groupId>org.json</groupId>
+    <artifactId>json</artifactId>
+    <version>20180130</version>
+</dependency>
+
+Jpa entities must be serializable at all time.
+For serializing/deserializing objects we use jackson.
+Public fields are serializable by default. In order to serialize/deserialize a private field it must have getter/setter.
+

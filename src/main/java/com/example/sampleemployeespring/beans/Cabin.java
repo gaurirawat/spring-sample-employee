@@ -1,4 +1,4 @@
-package com.example.sampleemployeespring.pojo;
+package com.example.sampleemployeespring.beans;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -12,7 +12,7 @@ public class Cabin {
     private Integer id;
 
     @Column
-    private String roomNo;
+    private Integer roomNo;
 
     @Column
     private int floorNo;
@@ -25,6 +25,11 @@ public class Cabin {
     public Cabin() {
     }
 
+    public Cabin(Integer roomNo, int floorNo) {
+        this.roomNo = roomNo;
+        this.floorNo = floorNo;
+    }
+
     public int getId() {
         return id;
     }
@@ -33,11 +38,11 @@ public class Cabin {
         this.id = id;
     }
 
-    public String getRoomNo() {
+    public Integer getRoomNo() {
         return roomNo;
     }
 
-    public void setRoomNo(String roomNo) {
+    public void setRoomNo(Integer roomNo) {
         this.roomNo = roomNo;
     }
 

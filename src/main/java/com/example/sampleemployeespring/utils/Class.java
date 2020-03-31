@@ -3,17 +3,6 @@ package com.example.sampleemployeespring.utils;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Class<T> {
-//    private List<T> list;
-//    public List<T> getList() {
-//        return list;
-//    }
-//    public void setList(List<T> list) {
-//        this.list = list;
-//    }
-}
-
-
  class XYZ<T>{
     public void testFunc(String str, List<T> list){
         T a= list.get(0);

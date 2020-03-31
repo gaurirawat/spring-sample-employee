@@ -1,7 +1,7 @@
 package com.example.sampleemployeespring.controller;
 
 import com.example.sampleemployeespring.repository.*;
-import com.example.sampleemployeespring.pojo.*;
+import com.example.sampleemployeespring.beans.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +23,7 @@ public class ProjectController {
     @PutMapping("/test/{id}")
     public Project test(@PathVariable ("id")Integer id) {
         Project d1= projectRepository.getOne(id);
-        d1.setGuide("biotechhhhh");
+//        d1.setGuide("biotechhhhh");
         d1.setProjectName("sacfsa");
         return projectRepository.save(d1);
     }

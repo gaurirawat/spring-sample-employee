@@ -1,16 +1,13 @@
-package com.example.sampleemployeespring.pojo;
+package com.example.sampleemployeespring.beans;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.sun.istack.NotNull;
-import com.sun.istack.Nullable;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table
-public class Employee {
+public class Employee implements Comparable{
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +16,7 @@ public class Employee {
     @Column
     private String name;
 
-    @OneToOne(mappedBy ="employee", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy ="employee")
     @JsonIgnoreProperties(value = {"employee", "hibernateLazyInitializer"}, allowSetters = true)
     private Cabin cabin;
 
@@ -36,6 +33,10 @@ public class Employee {
     public Employee() {
     }
 
+    public Employee(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -45,6 +46,13 @@ public class Employee {
                 ", projects=" + projects +
                 ", department=" + department +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Object B) {
+        int a= this.getCabin().getRoomNo();
+        int b= ((Employee)B).getCabin().getRoomNo();
+        return a-b;
     }
 
     public int getId() {
@@ -90,4 +98,6 @@ public class Employee {
     public void setProjects(List<Project> projects) {
         this.projects = projects;
     }
+
+
 }

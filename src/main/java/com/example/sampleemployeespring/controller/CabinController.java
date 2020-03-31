@@ -1,7 +1,7 @@
 package com.example.sampleemployeespring.controller;
 
 import com.example.sampleemployeespring.repository.*;
-import com.example.sampleemployeespring.pojo.*;
+import com.example.sampleemployeespring.beans.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,8 +40,8 @@ public class CabinController {
 
     @PutMapping("/delete/{id}")
     public void deleteCabin(@PathVariable("id") Integer id){
-        Employee e=cabinRepository.getOne(id).getEmployee();
-        e.setCabin(null);
+//        Employee e=cabinRepository.getOne(id).getEmployee();
+//        e.setCabin(null);
         cabinRepository.deleteById(id);
     }
 
